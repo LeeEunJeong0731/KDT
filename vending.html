@@ -224,15 +224,21 @@
         })
       }
     });
-    if (price.value - temp = 0 ){
-      root.style.filter="blur(5px)"
+    if (price.value - temp === 0) {
+      root.style.filter = "blur(5px)"
       let makespan = document.createElement('span');
-        document.body.appendChild(makespan);
-        let span = document.body.children[3];
-        span.textContent = "금액이 부족합니다.";
-        event.stopPropagation()
-    }
-    // console.dir(root)
+      document.body.appendChild(makespan);
+      let span = document.body.children[3];
+      span.textContent = "금액이 부족합니다.";
+      event.stopPropagation()
+      // defaulty()
+
+      root.addEventListener('click', function () {
+        root.style.filter = "";
+        span.textContent = "";
+      })};
+
+    // dir(root)
     // console.dir(li)
   </script>
 </body>
