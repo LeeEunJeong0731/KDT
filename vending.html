@@ -35,6 +35,15 @@
       color:plum;
     } */
 
+    span {
+      position: absolute;
+      top: 50vh;
+      left: 40vw;
+      font-size: 3vw;
+      font-weight: 700;
+      color: violet;
+    }
+
     #root {
       display: flex;
       align-items: center;
@@ -206,10 +215,23 @@
         document.body.appendChild(makespan);
         let span = document.body.children[3];
         span.textContent = "금액이 부족합니다.";
-        // event.stopPropagation()
+        event.stopPropagation()
         // defaulty()
+
+        root.addEventListener('click', function () {
+          root.style.filter = "";
+          span.textContent = "";
+        })
       }
     });
+    if (price.value - temp = 0 ){
+      root.style.filter="blur(5px)"
+      let makespan = document.createElement('span');
+        document.body.appendChild(makespan);
+        let span = document.body.children[3];
+        span.textContent = "금액이 부족합니다.";
+        event.stopPropagation()
+    }
     // console.dir(root)
     // console.dir(li)
   </script>
