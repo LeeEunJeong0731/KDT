@@ -27,10 +27,12 @@
       margin: 1vw;
     }
 
-    /* li>div {
-      width: 10vw;
-      height: 10vw;
-      margin: 1vw;
+    /* span {
+      position: absolute;
+      top:250px;
+      left: 250px;
+      font-size: 5vw;
+      color:plum;
     } */
 
     #root {
@@ -80,7 +82,8 @@
       background-color: bisque;
       border-radius: 60%;
     }
-    body>div:nth-child(2){
+
+    body>div:nth-child(2) {
       width: 100vw;
       height: 100vh;
       background-color: aliceblue;
@@ -88,7 +91,7 @@
   </style>
 </head>
 
-<body id="body">
+<body>
   <div id="root">
     <div>
       <ul></ul>
@@ -154,6 +157,9 @@
 
     let li = document.getElementsByTagName('li')
 
+
+    let temp;  // temp
+
     for (let i = 0; i < emoji.length; i++) {
       let makeLi = document.createElement('li');
       ul.appendChild(makeLi);
@@ -166,7 +172,7 @@
         li[i].appendChild(makeDiv);
       }
     };
-//div를 li안에 3개 만들어주고 그것을 li 길이 만큼 생성해줘
+    //div를 li안에 3개 만들어주고 그것을 li 길이 만큼 생성해줘
 
     for (let i = 0; i < emoji.length; i++) {
       let lidiv = ul.children[i];
@@ -177,28 +183,36 @@
       //만들어진 div는 하나는 이모지 하나는 값 하나는 인덱스를 세어줘 인덱스는 1부터 세도록해 
     };
 
-    let value = document.getElementById('value')
+    let price = document.getElementById('value')
     //인풋
     let gacha = document.getElementById('gacha')
     //뽑기 버튼
 
-    for(let i = 0; i<emoji.length; i++){
+    for (let i = 0; i < emoji.length; i++) {
       let li = document.getElementsByTagName('li');
-      li[i].addEventListener('click', function(){
+      li[i].addEventListener('click', function () {
+
+        console.log(`this click ${i}`);
         temp = li[i].children[1].textContent;
         temp2 = li[i].children[0].textContent;
       })
     };
-    gacha.addEventListener('click', function(){
-      if(value.value - temp < 0 ){
-        root.style.filter = "blur 10px"
-        let makerDiv = document.createElement('div');
-        document.body.appendChild(makerDiv);
-        let ddiv = document.body.children[2];
-        ddiv.textContent = "금액이 부족합니다.";
+    console.dir(price)
+    gacha.addEventListener('click', function () {
+
+      if (price.value - temp < 0) {
+        root.style.filter = "blur(5px)"
+        let makespan = document.createElement('span');
+        document.body.appendChild(makespan);
+        let span = document.body.children[3];
+        span.textContent = "금액이 부족합니다.";
+        // event.stopPropagation()
+        // defaulty()
       }
     });
-    console.dir(document)
+    // console.dir(root)
+    // console.dir(li)
   </script>
 </body>
+
 </html>
