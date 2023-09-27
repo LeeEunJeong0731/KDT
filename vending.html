@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    li {
+      width: 9vw;
+      height: 9vw;
+      background-color: gray;
+      list-style: none;
+      margin: 1vw;
+    }
+
+    /* li>div {
+      width: 10vw;
+      height: 10vw;
+      margin: 1vw;
+    } */
+
+    #root {
+      display: flex;
+      align-items: center;
+    }
+
+
+
+    #root>div:nth-child(1) {
+      width: 60vw;
+      height: 90vh;
+      background-color: lightgrey;
+      margin-left: 5vw;
+    }
+
+    #root>div:nth-child(2) {
+      width: 1vw;
+      height: 90vh;
+      background-color: lightgrey;
+      margin: 1vw;
+    }
+
+    #root>div:nth-child(3) {
+      width: 30vw;
+      height: 90vh;
+      background-color: lightgrey;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #root>div:nth-child(3)>p {
+      font-size: 3rem;
+    }
+
+    #value {
+      width: 20vw;
+      height: 5vh;
+      margin: 5vw;
+    }
+
+    #gacha {
+      width: 10vw;
+      height: 10vw;
+      background-color: bisque;
+      border-radius: 60%;
+    }
+    body>div:nth-child(2){
+      width: 100vw;
+      height: 100vh;
+      background-color: aliceblue;
+    }
+  </style>
+</head>
+
+<body id="body">
+  <div id="root">
+    <div>
+      <ul></ul>
+    </div>
+
+    <div></div>
+
+    <div>
+      <p>LJBL VENDING MACHINE</p>
+      <input type="text" id="value" value="" />
+      <button id="gacha"></button>
+    </div>
+  </div>
+  <script>
+    let root = document.getElementById('root');
+    let ul = root.children[0].children[0];
+    // console.dir(ul);
+
+    let Price = [
+      "3000",
+      "1500",
+      "900",
+      "1900",
+      "300",
+      "700",
+      "1200",
+      "2200",
+      "1000",
+      "1800",
+      "2300",
+      "1100",
+      "800",
+      "2000",
+      "3100",
+      "1900",
+      "1500",
+      "100",
+      "1600",
+      "900"
+    ]
+    let emoji = [
+      "😗",
+      "🤪",
+      "🤓",
+      "😋",
+      "🧐",
+      "😑",
+      "🥱",
+      "🤗",
+      "🥴",
+      "🤑",
+      "🤠",
+      "🥰",
+      "😌",
+      "👽",
+      "💀",
+      "🙄",
+      "🤖",
+      "🐠",
+      "🍗",
+      "🍔"
+    ]
+
+    let li = document.getElementsByTagName('li')
+
+    for (let i = 0; i < emoji.length; i++) {
+      let makeLi = document.createElement('li');
+      ul.appendChild(makeLi);
+    };
+
+
+    for (let j = 0; j < 3; j++) {
+      for (let i = 0; i < emoji.length; i++) {
+        let makeDiv = document.createElement('div');
+        li[i].appendChild(makeDiv);
+      }
+    };
+//div를 li안에 3개 만들어주고 그것을 li 길이 만큼 생성해줘
+
+    for (let i = 0; i < emoji.length; i++) {
+      let lidiv = ul.children[i];
+      lidiv.children[0].textContent = emoji[i];
+      lidiv.children[1].textContent = Price[i];
+      lidiv.children[2].textContent = i + 1;
+      // console.dir(lidiv.children)
+      //만들어진 div는 하나는 이모지 하나는 값 하나는 인덱스를 세어줘 인덱스는 1부터 세도록해 
+    };
+
+    let value = document.getElementById('value')
+    //인풋
+    let gacha = document.getElementById('gacha')
+    //뽑기 버튼
+
+    for(let i = 0; i<emoji.length; i++){
+      let li = document.getElementsByTagName('li');
+      li[i].addEventListener('click', function(){
+        temp = li[i].children[1].textContent;
+        temp2 = li[i].children[0].textContent;
+      })
+    };
+    gacha.addEventListener('click', function(){
+      if(value.value - temp < 0 ){
+        root.style.filter = "blur 10px"
+        let makerDiv = document.createElement('div');
+        document.body.appendChild(makerDiv);
+        let ddiv = document.body.children[2];
+        ddiv.textContent = "금액이 부족합니다.";
+      }
+    });
+    console.dir(document)
+  </script>
+</body>
+</html>
