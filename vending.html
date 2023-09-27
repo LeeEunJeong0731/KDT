@@ -224,22 +224,31 @@
           span.textContent = "";
         })
       }
-      if (price.value - temp >= 0) {
-      root.style.filter = "blur(5px)"
-      let makespan = document.createElement('span');
-      document.body.appendChild(makespan);
-      let span = document.body.children[3];
-      span.textContent = temp2 + '얻었습니다';
-      event.stopPropagation()
-      // defaulty()
+      if (price.value - temp === 0) {
+        root.style.filter = "blur(5px)"
+        let makespan = document.createElement('span');
+        document.body.appendChild(makespan);
+        let span = document.body.children[3];
+        span.textContent = temp2 + '얻었습니다';
 
-      root.addEventListener('click', function () {
-        root.style.filter = "";
-        span.textContent = "";
-      })
-    };
+
+        if (price.value - temp > 0) {
+          root.style.filter = "blur(5px)"
+          let makespan = document.createElement('span');
+          document.body.appendChild(makespan);
+          let span = document.body.children[3];
+          span.textContent = temp2 + '얻었습니다';
+          span.textContent = [price.value - temp] + "원 " + " 남았습니다."
+        }
+
+        event.stopPropagation()
+        root.addEventListener('click', function () {
+          root.style.filter = "";
+          span.textContent = "";
+        })
+      };
     });
-    
+
 
     // dir(root)
     // console.dir(li)
