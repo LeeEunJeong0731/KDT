@@ -27,23 +27,6 @@
       margin: 1vw;
     }
 
-    /* span {
-      position: absolute;
-      top:250px;
-      left: 250px;
-      font-size: 5vw;
-      color:plum;
-    } */
-
-    span {
-      position: absolute;
-      top: 50vh;
-      left: 40vw;
-      font-size: 3vw;
-      font-weight: 700;
-      color: violet;
-    }
-
     #root {
       display: flex;
       align-items: center;
@@ -96,6 +79,12 @@
       width: 100vw;
       height: 100vh;
       background-color: aliceblue;
+    }
+
+    body>div:nth-child(3) {
+      width: 100vw;
+      height:100vh;
+      filter: blur(5px);
     }
   </style>
 </head>
@@ -212,10 +201,14 @@
 
       if (price.value - temp < 0) {
         root.style.filter = "blur(5px)"
-        let makespan = document.createElement('span');
-        document.body.appendChild(makespan);
-        let span = document.body.children[3];
-        span.textContent = "금액이 부족합니다.";
+        let makerdiv = document.createElement('div');
+        document.body.appendChild(makerdiv);
+        let makediv = document.body.children[3];
+        let makep = document.createElement('p')
+        document.body.children[3].appendChild(makep)
+        let makerp = document.body.children[3].children[0];
+        makerp.textContent = "금액이 부족합니다.";
+
         event.stopPropagation()
         // defaulty()
 
@@ -231,21 +224,9 @@
         let span = document.body.children[3];
         span.textContent = temp2 + '얻었습니다';
 
-
         if (price.value - temp > 0) {
-          root.style.filter = "blur(5px)"
-          let makespan = document.createElement('span');
-          document.body.appendChild(makespan);
-          let span = document.body.children[3];
-          span.textContent = temp2 + '얻었습니다';
-          span.textContent = [price.value - temp] + "원 " + " 남았습니다."
-        }
 
-        event.stopPropagation()
-        root.addEventListener('click', function () {
-          root.style.filter = "";
-          span.textContent = "";
-        })
+        }
       };
     });
 
