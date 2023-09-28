@@ -212,8 +212,8 @@
         makerdiv.style.fontWeight = "900";
         makerdiv.style.fontSize = "3vw";
         makerdiv.style.display = "flex";
-        makerdiv.style.justifyContent="center";
-        makerdiv.style.alignItems="center";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.alignItems = "center";
 
         let makebutten = document.createElement('button');
         document.body.children[0].children[3].appendChild(makebutten);
@@ -221,21 +221,98 @@
         btn.style.width = "10vw";
         btn.style.height = "10vw";
         btn.style.backgroundColor = "bisque";
-        btn.style.borderRadius="60%";
+        btn.style.borderRadius = "60%";
 
-      }
-      if (price.value - temp === 0) {
-        root.style.filter = "blur(5px)"
-        let makespan = document.createElement('span');
-        document.body.appendChild(makespan);
-        let span = document.body.children[3];
-        span.textContent = temp2 + '얻었습니다';
-
-        if (price.value - temp > 0) {
-
-        }
+        btn.addEventListener('click', function () {
+          makerdiv.style.backdropFilter = "";
+          makerdiv.textContent = "";
+        })
       };
-    });
+
+      if (price.value - temp === 0) {
+        let makerdiv = document.createElement('div');
+        document.body.children[0].append(makerdiv);
+        let makediv = document.children[0].children[3];
+
+        makerdiv.style.width = "100vw";
+        makerdiv.style.height = "100vh";
+        makerdiv.style.backdropFilter = "blur(5px)";
+        makerdiv.style.top = "0px";
+        makerdiv.textContent = temp2 + "를" + "얻었습니다.";
+        makerdiv.style.position = "absolute";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.textAlign = "center";
+        makerdiv.style.flexDirection = "column";
+        makerdiv.style.color = "plum";
+        makerdiv.style.fontWeight = "900";
+        makerdiv.style.fontSize = "3vw";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.alignItems = "center";
+
+        let makebutten = document.createElement('button');
+        document.body.children[0].children[3].appendChild(makebutten);
+        let btn = document.body.children[0].children[3].children[0];
+        btn.style.width = "10vw";
+        btn.style.height = "10vw";
+        btn.style.backgroundColor = "bisque";
+        btn.style.borderRadius = "60%";
+
+        btn.addEventListener('click', function () {
+          makerdiv.style.backdropFilter = "";
+          makerdiv.textContent = "";
+        })
+      };
+
+      if (price.value - temp > 0) {
+        let makerdiv = document.createElement('div');
+        document.body.children[0].append(makerdiv);
+        let makediv = document.children[0].children[3];
+
+        makerdiv.style.width = "100vw";
+        makerdiv.style.height = "100vh";
+        makerdiv.style.backdropFilter = "blur(5px)";
+        makerdiv.style.top = "0px";
+        makerdiv.textContent = temp2 + "를" + "얻었습니다.";
+        makerdiv.style.position = "absolute";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.textAlign = "center";
+        makerdiv.style.flexDirection = "column";
+        makerdiv.style.color = "plum";
+        makerdiv.style.fontWeight = "900";
+        makerdiv.style.fontSize = "3vw";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.alignItems = "center";
+
+        let makebutten = document.createElement('button');
+        document.body.children[0].children[3].appendChild(makebutten);
+        let btn = document.body.children[0].children[3].children[0];
+        btn.style.width = "10vw";
+        btn.style.height = "10vw";
+        btn.style.backgroundColor = "bisque";
+        btn.style.borderRadius = "60%";
+
+        btn.addEventListener('click', function () {
+          makerdiv.textContent = [price.value - temp] + "원 " + " 남았습니다.";
+          let makebutten = document.createElement('button');
+          document.body.children[0].children[3].appendChild(makebutten);
+          let btn = document.body.children[0].children[3].children[0];
+          btn.style.width = "10vw";
+          btn.style.height = "10vw";
+          btn.style.backgroundColor = "bisque";
+          btn.style.borderRadius = "60%";
+
+          btn.addEventListener('click', function () {
+            makerdiv.style.backdropFilter = "";
+            makerdiv.textContent = "";
+          })
+      })
+      }
+    }
+      );
 
 
     // dir(root)
