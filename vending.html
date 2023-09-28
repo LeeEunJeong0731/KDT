@@ -211,24 +211,18 @@
         makerdiv.style.color = "plum";
         makerdiv.style.fontWeight = "900";
         makerdiv.style.fontSize = "3vw";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent="center";
+        makerdiv.style.alignItems="center";
 
-        let makebutten = document.createComment('button');
-        document.body.children[0].children[3].append(makebutten);
+        let makebutten = document.createElement('button');
+        document.body.children[0].children[3].appendChild(makebutten);
         let btn = document.body.children[0].children[3].children[0];
         btn.style.width = "10vw";
         btn.style.height = "10vw";
-        btn.style.backgroundColor = "red";
-        btn.style.boderRadius = "60%";
+        btn.style.backgroundColor = "bisque";
+        btn.style.borderRadius="60%";
 
-
-
-        event.stopPropagation()
-        // defaulty()
-
-        root.addEventListener('click', function () {
-          root.style.filter = "";
-          span.textContent = "";
-        })
       }
       if (price.value - temp === 0) {
         root.style.filter = "blur(5px)"
