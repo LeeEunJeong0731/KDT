@@ -80,12 +80,6 @@
       height: 100vh;
       background-color: aliceblue;
     }
-
-    body>div:nth-child(3) {
-      width: 100vw;
-      height:100vh;
-      filter: blur(5px);
-    }
   </style>
 </head>
 
@@ -200,14 +194,33 @@
     gacha.addEventListener('click', function () {
 
       if (price.value - temp < 0) {
-        root.style.filter = "blur(5px)"
         let makerdiv = document.createElement('div');
-        document.body.appendChild(makerdiv);
-        let makediv = document.body.children[3];
-        let makep = document.createElement('p')
-        document.body.children[3].appendChild(makep)
-        let makerp = document.body.children[3].children[0];
-        makerp.textContent = "금액이 부족합니다.";
+        document.body.children[0].append(makerdiv);
+        let makediv = document.children[0].children[3];
+
+        makerdiv.style.width = "100vw";
+        makerdiv.style.height = "100vh";
+        makerdiv.style.backdropFilter = "blur(5px)";
+        makerdiv.style.top = "0px";
+        makerdiv.textContent = "금액이 부족합니다.";
+        makerdiv.style.position = "absolute";
+        makerdiv.style.display = "flex";
+        makerdiv.style.justifyContent = "center";
+        makerdiv.style.textAlign = "center";
+        makerdiv.style.flexDirection = "column";
+        makerdiv.style.color = "plum";
+        makerdiv.style.fontWeight = "900";
+        makerdiv.style.fontSize = "3vw";
+
+        let makebutten = document.createComment('button');
+        document.body.children[0].children[3].append(makebutten);
+        let btn = document.body.children[0].children[3].children[0];
+        btn.style.width = "10vw";
+        btn.style.height = "10vw";
+        btn.style.backgroundColor = "red";
+        btn.style.boderRadius = "60%";
+
+
 
         event.stopPropagation()
         // defaulty()
