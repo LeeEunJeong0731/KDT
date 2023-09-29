@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      #root {
+        position: relative;
+      }
+
+      #root > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: relative;
+      }
+
+      #item-component {
+        width: calc(70%);
+        height: 100vh;
+        background-color: rgb(253, 249, 194);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      #input-component {
+        width: calc(30%);
+        height: 100vh;
+        background-color: rgb(255, 166, 166);
+      }
+
+      #item-component > div {
+        display: flex;
+      }
+
+      #item-component > div > div {
+        width: 150px;
+        height: 150px;
+        background-color: rgb(171, 171, 249);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgb(118, 118, 242);
+        cursor: pointer;
+        margin: 20px;
+        border-radius: 75px;
+        box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      #input-component {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #input-component > div {
+        width: 300px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      #input-component > div > p {
+        margin-bottom: 15px;
+        color: white;
+        font-size: 30px;
+      }
+
+      .emoji {
+        font-size: 50px;
+      }
+
+      .price {
+        font-size: 25px;
+        color: white;
+      }
+
+      #price-input {
+        width: 300px;
+        height: 50px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid rgb(255, 166, 166);
+        outline: none;
+        background-color: white;
+        color: rgb(243, 53, 148);
+        font-size: 20px;
+        margin-top: 200px;
+      }
+
+      #price-input:focus {
+        border-color: rgb(243, 53, 148);
+        caret-color: rgb(243, 53, 148);
+      }
+
+      #price-input::placeholder {
+        color: rgb(250, 173, 212);
+        text-align: center;
+      }
+
+      #price-button {
+        margin-top: 30px;
+        width: 300px;
+        height: 50px;
+        border: 1px solid rgb(255, 166, 166);
+        background-color: rgb(243, 53, 148);
+        border-radius: 5px;
+        color: white;
+        font-size: 20px;
+      }
+
+      #warning {
+        position: absolute;
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(243, 53, 148);
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root">
+      <div>
+        <div id="item-component"></div>
+        <div id="input-component">
+          <div>
+            <p>충전 금액 :</p>
+            <p id="charge-text">0원</p>
+          </div>
+          <div>
+            <p>구입 금액 :</p>
+            <p id="purchase-text">0원</p>
+          </div>
+          <div>
+            <p>남은 금액 :</p>
+            <p id="changes-text">0원</p>
+          </div>
+          <input
+            type="number"
+            id="price-input"
+            placeholder="금액을 충전해주세요"
+            min="1"
+          />
+          <button id="price-button" onclick="checkInput()">충전</button>
+        </div>
+      </div>
+      <div id="warning">asdasd</div>
+    </div>
+
+    <script>
+      const rootComponent = document.getElementById("root");
+      const itemComponent = document.getElementById("item-component");
+      const chargeButton = document.getElementById("price-button");
+      const priceInput = document.getElementById("price-input");
+      const chargeText = document.getElementById("charge-text");
+      const changesText = document.getElementById("changes-text");
+      const purchaseText = document.getElementById("purchase-text");
+      const warningText = document.getElementById("warning");
+
+      let chargeAmount = 0;
+      let purchaseAmount = 0;
+      let changes = 0;
+
+      let Price = [
+        "3000",
+        "1500",
+        "900",
+        "1900",
+        "300",
+        "700",
+        "1200",
+        "2200",
+        "1000",
+        "1800",
+        "2300",
+        "1100",
+        "800",
+        "2000",
+        "3100",
+        "1900",
+        "1500",
+        "100",
+        "1600",
+        "900",
+      ];
+      let emoji = [
+        "😗",
+        "🤪",
+        "🤓",
+        "😋",
+        "🧐",
+        "😑",
+        "🥱",
+        "🤗",
+        "🥴",
+        "🤑",
+        "🤠",
+        "🥰",
+        "😌",
+        "👽",
+        "💀",
+        "🙄",
+        "🤖",
+        "🐠",
+        "🍗",
+        "🍔",
+      ];
+
+      for (let i = 0; i < 5; i++) {
+        const row = document.createElement("div");
+
+        for (let j = 0; j < 4; j++) {
+          const item = document.createElement("div");
+          item.innerHTML = `
+            <div class="emoji">${emoji[i * 4 + j]}</div>
+            <div class="price">${Price[i * 4 + j]}</div>
+        `;
+
+          item.addEventListener("click", function () {
+            if (parseInt(Price[i * 4 + j]) > chargeAmount) {
+              rootComponent.style.filter = "blur(5px)";
+              warningText.innerText = "금액이 부족합니다, 충전해주세요.";
+              return;
+            }
+            purchaseAmount += parseInt(Price[i * 4 + j]);
+            purchaseText.innerText = `${purchaseAmount}원`;
+            changesHandler();
+          });
+          row.appendChild(item);
+        }
+
+        itemComponent.appendChild(row);
+      }
+
+      function checkInput() {
+        const inputData = document.getElementById("price-input");
+        chargeAmount += parseInt(inputData.value);
+        chargeText.innerText = `${chargeAmount}원`;
+        changesHandler();
+      }
+
+      function changesHandler() {
+        changes = chargeAmount - purchaseAmount;
+        changesText.innerText = `${changes}원`;
+      }
+    </script>
+  </body>
+</html>
